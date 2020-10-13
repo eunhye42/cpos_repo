@@ -65,6 +65,8 @@
       </tr>
     </tfoot>
   </table>
+  <div>
+  </div>
   <div id="itemPaging">
   </div>
 </div>
