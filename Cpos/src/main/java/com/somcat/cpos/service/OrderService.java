@@ -36,12 +36,17 @@ public class OrderService implements OrderServiceIntf {
 		return odao.selectOrderList(cri, ovo);
 	}
 
-	@Transactional(isolation = Isolation.READ_COMMITTED)
+	@Transactional
 	@Override
 	public int changeOrderStatus(int wrap_no, int status) {
 		if(status==1)
 			sdao.insertInventory(wrap_no);
 		return odao.updateOrderStatus(wrap_no, status);
+	}
+
+	@Override
+	public int cancelOrder(int order_no) {
+		return 0;
 	}
 
 	@Override

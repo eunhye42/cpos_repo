@@ -55,7 +55,7 @@ public class HeadCtrl {
 	@GetMapping("/plist")
 	public void list(Model model, Criterion cri) {
 		model.addAttribute("pList", hsv.getHeadList(cri));
-		log.info(">>>>>>>>>>> check1");
+		//log.info(">>>>>>>>>>> check1");
 		int totalCount = hsv.getTotalCount();
 		model.addAttribute("pgvo", new PagingVO(totalCount, cri));
 	}

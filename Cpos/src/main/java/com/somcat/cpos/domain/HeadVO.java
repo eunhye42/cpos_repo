@@ -5,6 +5,8 @@ public class HeadVO {
 	private int barcode;// number(8,0)
 	private String pname;
 	private int category;
+	private String large;
+	private String medium;
 	private int expire_term;
 	private int get_price;
 	private int sell_price;
@@ -34,10 +36,11 @@ public class HeadVO {
 	}
 
 	// list
-	public HeadVO(int barcode, String pname, int category) {
+	public HeadVO(int barcode, String pname, String large, String medium) {
 		this.barcode = barcode;
 		this.pname = pname;
-		this.category = category;
+		this.large = large;
+		this.medium = medium;
 	}
 
 	public int getStatus() {
@@ -102,6 +105,22 @@ public class HeadVO {
 
 	public void setDiscount_rate(int discount_rate) {
 		this.discount_rate = discount_rate;
+	}
+
+	public String getLarge() {
+		return large;
+	}
+
+	public void setLarge(String large) {
+		this.large = large;
+	}
+
+	public String getMedium() {
+		return medium;
+	}
+
+	public void setMedium(String medium) {
+		this.medium = medium;
 	}
 
 }

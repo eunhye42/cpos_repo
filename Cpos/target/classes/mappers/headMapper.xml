@@ -9,10 +9,11 @@
 </insert>
 <select id="plist" parameterType="Criterion" resultType="HeadVO">
  <![CDATA[
- select barcode,pname,category
+ select barcode,pname,large,medium 
  from (select /*+INDEX_DESC(tbl_head pk_head)*/
- rownum as rn,barcode,pname,category
- from tbl_head
+ rownum as rn,barcode,pname,large,medium
+ from tbl_head h inner join tbl_category c 
+ on h.category = c.category 
  where rownum <= #{pageNum}*#{amount})
  where rn > (#{pageNum}-1)*#{amount}
  ]]> 

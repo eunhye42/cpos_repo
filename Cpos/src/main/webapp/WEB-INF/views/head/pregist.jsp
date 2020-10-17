@@ -23,14 +23,14 @@
       <div class="form-group">
       	<label for="medium">중분류</label>
       	<select class="form-control" id="medium" name="medium">
-        	<option>01</option>
-        	<option>02</option>
-        	<option>03</option>
-      	</select>          
+        	<option value="01">음료</option>
+        	<option value="02">채소과일</option>
+        	<option value="03">정육</option>
+      	</select>
       </div>       
       <div class="form-group">
         <label for="category">카테고리</label>
-        <input type="text" class="from-control" name="category" id="category">
+        <input type="text" class="from-control" name="category" id="category" readonly>
       </div>
        <div class="form-group">
         <label for="barcode">바코드 &nbsp;<span id="chkBarcode"></span></label> 
@@ -39,21 +39,21 @@
       <div class="form-group">
       <button type="button" id="bBtn" value="button">바코드생성</button>
       </div>
-      <div class="form-group">
+      <div class="form-group reg">
         <label for="expire_term">유통기간</label>
-        <input type="number" class="from-control" name="expire_term">
+        <input type="number" class="from-control" name="expire_term">일
       </div>
-      <div class="form-group">
+      <div class="form-group reg">
         <label for="get_price">도매가</label>
-        <input type="number" class="from-control" name="get_price">
+        <input type="number" class="from-control" name="get_price">원
       </div>
-      <div class="form-group">
+      <div class="form-group reg">
         <label for="sell_price">판매가</label>
-        <input type="number" class="from-control" name="sell_price">
+        <input type="number" class="from-control" name="sell_price">원
       </div>
-      <div class="form-group">
+      <div class="form-group reg">
         <label for="discount_rate">할인률</label>
-        <input type="number" class="from-control" name="discount_rate">
+        <input type="number" class="from-control" name="discount_rate">%
       </div>
       <button type="submit" class="btn btn-dark" id="rBtn">등록</button>
       <button type="button" class="btn btn-dark" id="cBtn"><a href="/head/plist">취소</a></button>      
@@ -112,5 +112,42 @@ bBtn.onclick = function(event){
 	barcodeNum = makeBarcode(cateVal,rnNum);	
 	document.getElementById('chkbarcode').value = Number(barcodeNum);
 	}
+	
+$("#large").on("change", function(e) {
+	  //alert("선택한것: "+$(this).text() + "/" + $(this).val());
+	  //console.log($(this));
+	  let c1 = ["음료","채소/과일","정육"];
+	  let c2 = ["아이스","가공식품"];
+	  let c3 = ["과자류","라면","조미료"];
+	  let c4 = ["의류","위생용품","기타"];
+	  let c5 = ["주류","담배"];
+	  var target = document.getElementById("medium");
+	  let data;
+	  if($(this).text() != "x"){
+	    if($(this).val() == "10")
+	      data = c1;
+	    else if($(this).val() == "20")
+	      data = c2;
+	    else if($(this).val() == "30")
+	      data = c3;
+	    else if($(this).val() == "40")
+	      data = c4;
+	    else if($(this).val() == "50")
+	      data = c5;
+	  }else{
+	      data = ["대분류를 선택해 주세요."];
+	    }
+	  
+	  target.options.length = 0;
+	  let i = 1;
+	  for(x in data){
+	    var opt = document.createElement("option");
+	    opt.text = data[x];
+	    opt.value = "0"+i;
+	    opt.innerHTML = data[x];
+	    target.appendChild(opt);
+	    i++;
+	  }
+});
 </script>
 
