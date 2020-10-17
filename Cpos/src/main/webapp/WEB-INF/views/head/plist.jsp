@@ -16,11 +16,11 @@
 							<div>
 								<select class="form-control" id="large" name="large">
 									<option>대분류</option>
-									<option>10</option>
-									<option>20</option>
-									<option>30</option>
-									<option>40</option>
-									<option>50</option>
+									<option value="10">냉장</option>
+									<option value="20">냉동</option>
+									<option value="30">실온</option>
+									<option value="40">생필품</option>
+									<option value="50">50</option>
 								</select>
 							</div>
 							<div>
