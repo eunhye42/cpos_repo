@@ -35,7 +35,7 @@
       </div>
       <div class="form-group">
         <label for="discount_rate">할인률:</label>
-        <input type="number" class="from-control " value="${hvo.discount_rate }" name="discount_rate">
+        <input type="number" class="from-control " value="${hvo.discount_rate }" name="discount_rate">%
       </div>
       <div class="form-group">
         <label for="discount_rate">상태:</label>
