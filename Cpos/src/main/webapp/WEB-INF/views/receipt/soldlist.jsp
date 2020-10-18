@@ -37,10 +37,10 @@
 	      	<li class="nav-item"><a class="detailLink" href="#">${rvo.receipt_no }</a></li>
 	      	<li class="nav-item">${rvo.pname }</li>
 	      	<c:choose>
-	      		<c:when test="${rvo.pay_method eq 'cash'}">
+	      		<c:when test="${rvo.pay_method eq '현금'}">
 	      			<li class="nav-item">현금</li>
 	      		</c:when>
-	      		<c:when test="${rvo.pay_method eq 'card'}">
+	      		<c:when test="${rvo.pay_method eq '카드'}">
 	      			<li class="nav-item">카드</li>
 	      		</c:when>
 	      	</c:choose>

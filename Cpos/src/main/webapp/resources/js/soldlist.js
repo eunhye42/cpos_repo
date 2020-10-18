@@ -41,11 +41,11 @@ function printDetail(rno){
                  tableTag += '<td style="display: none">'+ rvo.barcode +'</td>';
                  tableTag += '<td>'+ rvo.pname +'</td>';
                  tableTag += '<td style="display:none">'+ rvo.category +'</td>';
-                 tableTag += '<td>'+ rvo.sell_qnt+'</td>';
+                 tableTag += '<td>'+ rvo.sell_qnt+'</td><td>';
                  if(rvo.discount_rate>0){
-                 tableTag += '<td>'+ ((rvo.sell_price)*rvo.sell_qnt)-(((rvo.sell_price)*rvo.sell_qnt)*(rvo.discount_rate)/100) +'</td>';
+                 tableTag += ((rvo.sell_price)*rvo.sell_qnt)-(((rvo.sell_price)*rvo.sell_qnt)*(rvo.discount_rate)/100) +'</td>';
                  }else{
-                	 tableTag += '<td>'+ (rvo.sell_price)*rvo.sell_qnt+'</td>';
+                	 tableTag += (rvo.sell_price)*rvo.sell_qnt+'</td>';
                  }
                  tableTag += '<td>'+ rvo.pay_method +'</td>';
                  let strdate = (new Date(rvo.sell_date)).toString();
@@ -53,7 +53,8 @@ function printDetail(rno){
                  console.log(strdate);
                  tableTag += '<td>'+ strdate +'</td>';
                  tableTag += '<td>'+ rvo.discount_rate +'% </td>';
-                 tableTag += '<td>'+ rvo.receipt_no +'</td></tr></tbody>';
+                 tableTag += '<td>'+ rvo.receipt_no +'</td></tr><tr><td colspan="7">'
+                 + 전체금액 +'</td></tr></tbody>';
                $("#detable").append(tableTag); 
 		}
 	});
