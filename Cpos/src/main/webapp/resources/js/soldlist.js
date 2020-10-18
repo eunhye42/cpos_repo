@@ -53,10 +53,10 @@ function printDetail(rno){
                  console.log(strdate);
                  tableTag += '<td>'+ strdate +'</td>';
                  tableTag += '<td>'+ rvo.discount_rate +'% </td>';
-                 tableTag += '<td>'+ rvo.receipt_no +'</td></tr><tr><td colspan="7">'
-                 + "전체금액 total_price" +'</td></tr></tbody>';
-               $("#detable").append(tableTag); 
+                 tableTag += '<td>'+ rvo.receipt_no +'</td></tr></tbody>';
+               $("#detable").append(tableTag);
 		}
+		$("#detable").append('<tfoot><tr><td colspan="7">' + "전체금액 total_price" +'</td></tr></tfoot>');
 	});
 }
 
