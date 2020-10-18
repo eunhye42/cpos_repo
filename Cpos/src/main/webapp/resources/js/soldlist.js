@@ -54,7 +54,7 @@ function printDetail(rno){
                  tableTag += '<td>'+ strdate +'</td>';
                  tableTag += '<td>'+ rvo.discount_rate +'% </td>';
                  tableTag += '<td>'+ rvo.receipt_no +'</td></tr><tr><td colspan="7">'
-                 + 전체금액 +'</td></tr></tbody>';
+                 + "전체금액 total_price" +'</td></tr></tbody>';
                $("#detable").append(tableTag); 
 		}
 	});
