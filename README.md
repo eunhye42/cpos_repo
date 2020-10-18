@@ -8,4 +8,5 @@
 ##  -깃에서 remote는 fork된 개인Main_repo로 연결하고 'push'
 
 + 개인Main_repo로 push한 것을 'pull request'
+
 Readme..
