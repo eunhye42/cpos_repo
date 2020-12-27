@@ -22,13 +22,31 @@ header {
 }
 body #logo{
 	padding-top : 20px;
+	height: 100px;
+	width : 100%;
+	position: fixed;
 }
 
 #logo img{
 	width : 120px;
-	height : auto;
 }
 
+div#login{
+	margin: 150px 0;
+	width: 100%;
+	display: inline-block;
+}
+
+#login>form{
+	margin: 0 auto;
+	width: 300px;
+	background-color: #76ff76;
+	padding: 10px;
+}
+
+label{
+	margin-left: 5px;
+}
 /* 은혜 */
 .qnt {
 	width: 80px;
