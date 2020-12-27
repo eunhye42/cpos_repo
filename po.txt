@@ -1,9 +1,0 @@
-CPOS
-
-Web site 제작
-
-포트폴리오, 자소서 제작
-
-React, Vue 맛보기
-
-JAVA 기초 지식 복습
