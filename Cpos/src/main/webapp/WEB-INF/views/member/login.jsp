@@ -17,8 +17,25 @@
 </form>
 </div>
 <script>
-  $("#loginBtn").on("click", function() {
+$("#loginBtn").on("click", function() {
 	//로그인버튼 누르면 일단 빈칸 확인 후 전달
-	console.log("로그이ㄴ버튼 눌렀음ㅋㅋ");
+	  if ($("#id").val().trim() == ""){
+		  alert("아이디를 입력하세요.");
+	  }
+	  else{
+		  $.ajax({
+			   url: "/member/login",
+			   type: "post",
+			   data: {
+				   member_id : $("#id").val(),
+				   member_pwd : $("#pwd").val()
+				   }			  
+		    }).done(function(result) {
+		    	console.log("확인"+result);
+		    	result=="fail"? alert("아이디와 비밀번호를 다시 확인하세요"): location.href=result;
+		    }).fail(function(result) {
+		    	console.log("에러발생"+result);
+			});
+	  }
 });
 </script>

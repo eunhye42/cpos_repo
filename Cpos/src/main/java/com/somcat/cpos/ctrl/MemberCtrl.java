@@ -54,21 +54,20 @@ public class MemberCtrl {
 		
 	}
 	
+	@ResponseBody
 	@PostMapping("/login")
-	public String login(MemberVO mvo, HttpServletRequest req, RedirectAttributes reAttr){
+	public String login(MemberVO mvo, HttpServletRequest req){
 		MemberVO minfo = msv.login(mvo);
 		HttpSession ses = req.getSession();
 		if(minfo != null) {
 			ses.setAttribute("mvo", minfo);
-			log.info(">>>>"+minfo.getMember_id());
 			if(minfo.getOpt()==0) {
 				return "/head/fourmenu";
 			}else if(minfo.getOpt()==1) {
 				return "/head/headmenu";
 			}
 		}else {
-			reAttr.addFlashAttribute("msg", "로그인에 실패했습니다");
-			return "redirect:/member/login";
+			return "fail";
 		}
 		return "redirect:/";
 	}

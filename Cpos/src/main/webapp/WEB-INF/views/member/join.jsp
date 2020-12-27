@@ -28,7 +28,7 @@
        <option value="1">가맹주</option>
       </select>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <button type="button" class="btn btn-danger" onclick="location.repace('login.jsp')">Cancle</button>
+      <button type="button" class="btn btn-danger" onclick="location.replace('login.jsp')">Cancle</button>
     </form>
   </div>
 </section>
