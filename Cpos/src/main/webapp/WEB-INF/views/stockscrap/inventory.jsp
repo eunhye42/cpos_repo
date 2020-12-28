@@ -106,6 +106,8 @@ function  printList(list, itemTotal, page){
 	  if(list.length != 0){
      for(svo of list){
     	 let exdate = displayTime(svo.expire_date);
+    	 //let scrap = exScrap(exdate);
+    	 let scrap = exScrap(svo.expire_date);
       uls +='<tr>';
       uls +='<td class="text-info"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
       uls +='<td><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
@@ -113,8 +115,15 @@ function  printList(list, itemTotal, page){
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
       uls +='<td>'+svo.discount_rate+' %'+'</td>';
       uls +='<td class="ex_date">'+exdate+'</td>';
-      uls += exScrap(exdate) == 1 ? '<td class="text-danger">폐기예정</td>'
-    		  :'<td class="text-success">'+"여유"+'</td>';
+      console.log(scrap);
+      if(scrap < 1){ 
+    	  uls += '<td class="text-danger">폐기예정';
+      }else if(scrap <= 3){
+    	  uls += '<td class="text-warning">폐기임박';
+      }else {
+    	  uls += '<td class="text-success">'+"여유";
+      }
+      uls += '</td>';
      }
 	  }else{
 		 uls += '<tr><td rowspan="6">해당 상품이 없습니다.</td>';
@@ -131,9 +140,12 @@ $("#mcate").on("change", function() {
 	});
 	
 	function exScrap(date) {
-	  let today = displayTime(new Date());
-	  let diff = date <= today;
-	  return diff?1:0;
+	  let today = new Date();
+	  //let today = displayTime(new Date());
+	  //let diff = date <= today;
+	  //return diff?1:0;
+	  let day = (date-today)/86400000;
+	  return day;
 	}
 	
 	function displayTime(d8) {
