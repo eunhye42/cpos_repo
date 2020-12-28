@@ -19,9 +19,9 @@ function printList(list){
 	$("#recList:first-child").nextAll().remove();
 	for(let key of list){
 		let ulTag = '<ul class="nav nav-pills nav-justified">';
-		ulTag += '<li class="nav-item">'+key.sell_no+'</li>';
 		ulTag += '<li class="nav-item"><a class="detailLink" href="#">'+key.receipt_no+'</a></li>';
 		console.log(key.receipt_no);
+		ulTag += '<li class="nav-item">'+key.p_count+'</li>';
 		ulTag += '<li class="nav-item">'+key.pname+'</li>';
 		ulTag += '<li class="nav-item">'+key.pay_method+'</li>';
 		ulTag += '<li class="nav-item">'+key.sell_date+'</li>';
@@ -35,6 +35,7 @@ function printDetail(rno){
 		console.log(list);
 		console.log(typeof list);
 		$("#thead:first-child").nextAll().remove();
+		let total_price=0;
 		for(let rvo of list){
 			 let tableTag = '<tbody><tr class="i">';
                  tableTag += '<td style="display: none">'+ rvo.sell_no +'</td>';
@@ -42,11 +43,14 @@ function printDetail(rno){
                  tableTag += '<td>'+ rvo.pname +'</td>';
                  tableTag += '<td style="display:none">'+ rvo.category +'</td>';
                  tableTag += '<td>'+ rvo.sell_qnt+'</td><td>';
+                 let s_price = 0;
                  if(rvo.discount_rate>0){
-                 tableTag += ((rvo.sell_price)*rvo.sell_qnt)-(((rvo.sell_price)*rvo.sell_qnt)*(rvo.discount_rate)/100) +'</td>';
+                 s_price = ((rvo.sell_price)*rvo.sell_qnt)-(((rvo.sell_price)*rvo.sell_qnt)*(rvo.discount_rate)/100);
                  }else{
-                	 tableTag += (rvo.sell_price)*rvo.sell_qnt+'</td>';
+                	 s_price = (rvo.sell_price)*rvo.sell_qnt;
                  }
+                 tableTag += s_price+'</td>';
+                 total_price += s_price;
                  tableTag += '<td>'+ rvo.pay_method +'</td>';
                  let strdate = (new Date(rvo.sell_date)).toString();
                  strdate = strdate.substring(0, strdate.lastIndexOf(":")+3);
@@ -56,7 +60,7 @@ function printDetail(rno){
                  tableTag += '<td>'+ rvo.receipt_no +'</td></tr></tbody>';
                $("#detable").append(tableTag);
 		}
-		$("#detable").append('<tfoot><tr><td colspan="7">' + "전체금액 total_price" +'</td></tr></tfoot>');
+		$("#detable").append('<tfoot><tr><td colspan="6">' + "전체금액 : "+total_price+' 원</td></tr></tfoot>');
 	});
 }
 

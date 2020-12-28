@@ -119,7 +119,7 @@ function  printList(list, itemTotal, page){
       if(scrap < 1){ 
     	  uls += '<td class="text-danger">폐기예정';
       }else if(scrap <= 3){
-    	  uls += '<td class="text-warning">폐기임박';
+    	  uls += '<td class="text-warning">기한임박';
       }else {
     	  uls += '<td class="text-success">'+"여유";
       }

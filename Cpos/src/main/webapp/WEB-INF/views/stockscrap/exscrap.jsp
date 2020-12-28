@@ -65,6 +65,8 @@
       </tr>
     </tfoot>
   </table>
+  <div>
+  </div>
   <div id="itemPaging">
   </div>
 </div>
@@ -134,7 +136,7 @@ function  exprintList(list, itemTotal, page){
       uls +='</td></tr>';
      }
     }else{
-     uls += '<tr><td rowspan="6">해당 상품이 없습니다.</td></tr>';
+     uls += '<tr><td colspan="6">해당 상품이 없습니다.</td></tr>';
    } 
      $("#tbody").html(uls);
      printPaging(itemTotal, page);

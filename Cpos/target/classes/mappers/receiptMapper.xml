@@ -31,11 +31,13 @@
   </insert>
   <select id="rlist" parameterType="ReceiptVO" resultType="ReceiptVO">
   <![CDATA[
-    select/*+INDEX_DESC(tbl_sell pk_sell)*/ sell_no, pay_method, sell_date, receipt_no, pname from tbl_sell where rownum > 0 
+    select/*+INDEX_DESC(tbl_sell pk_sell)*/ count(pname) as p_count, pay_method, sell_date, receipt_no, '상품 외' as pname from tbl_sell where rownum > 0 
     ]]>
     <include refid="search"/>
     <![CDATA[
-    and (sell_date between #{sell_date_s} and #{sell_date_e}) order by sell_no desc, pname
+    and (sell_date between #{sell_date_s} and #{sell_date_e}) 
+    group by receipt_no, pay_method, sell_date 
+    order by sell_date desc
     ]]>
   </select>
   <select id="rdetail" parameterType="java.lang.String" resultType="ReceiptVO">

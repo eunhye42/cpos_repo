@@ -19,6 +19,7 @@ public class ReceiptVO {
 	private String pname;
 	private int get_price;
 	private int sell_price;
+	private int p_count;
 	
 	public ReceiptVO() {
 		
@@ -29,11 +30,11 @@ public class ReceiptVO {
 		this.receipt_no = receipt_no;
 	}
 
-	public ReceiptVO(int sell_no, String pay_method, Date sell_date, String receipt_no, String pname) {
-		this.sell_no = sell_no;
+	public ReceiptVO(int p_count, String pay_method, Date sell_date, String receipt_no, String pname) {
+		this.receipt_no = receipt_no;
 		this.pay_method = pay_method;
 		this.sell_date = sell_date;
-		this.receipt_no = receipt_no;
+		this.p_count = p_count;
 		this.pname = pname;
 	}
 
@@ -211,5 +212,12 @@ public class ReceiptVO {
 		this.receipt_no = receipt_no;
 	}
 	
-	
+	public int getP_count() {
+		return p_count;
+	}
+
+	public void setP_count(int p_count) {
+		this.p_count = p_count;
+	}
+
 }

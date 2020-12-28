@@ -8,29 +8,29 @@
 		<c:if test="${mvo ne null}">
 		<div class="btn-group">
 			<div class="btn-group">
-				<a href="/pay/payment" class="btn btn-primary">결제</a>
+				<a href="/pay/payment" class="btn btn-primary menuBtn">결제</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="/stockscrap/ssmenu" class="btn btn-primary">재고/폐기</a>
+				<a href="/stockscrap/ssmenu" class="btn btn-primary menuBtn">재고/폐기</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="/receipt/soldlist?member_id=${mvo.member_id}" class="btn btn-primary">판매조회</a>
+				<a href="/receipt/soldlist?member_id=${mvo.member_id}" class="btn btn-primary menuBtn">판매조회</a>
 			</div>
 
 			<div class="btn-group">
-				<a href="/order/ons" class="btn btn-primary">발주/통계</a>
+				<a href="/order/ons" class="btn btn-primary menuBtn">발주/통계</a>
 			</div>
 
 			<c:if test="${mvo ne null}">
 				<div class="btn-group">
-					<a href="/member/logout" class="btn btn-primary">로그아웃</a>
+					<a href="/member/logout" class="btn btn-primary menuBtn">로그아웃</a>
 				</div>
 			</c:if>
 			<c:if test="${mvo eq null}">
 				<div class="btn-group">
-					<a href="/member/login" class="btn btn-primary">로그인</a>
+					<a href="/member/login" class="btn btn-primary menuBtn">로그인</a>
 				</div>
 			</c:if>
 		</div>

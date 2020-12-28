@@ -24,18 +24,18 @@
     </div>
   <div class="container listArea" id="ReceiptList">
     <ul class="nav nav-pills nav-justified" id="recList">
-      <li class="nav-item">순번</li>
       <li class="nav-item">영수증번호</li>
       <li class="nav-item">품목</li>
+      <li class="nav-item">상품종류수</li>
       <li class="nav-item">결제수단</li>
       <li class="nav-item">판매일시</li>
     </ul>
     <c:if test="${not empty list}">
     	<c:forEach var="rvo" items="${list}" >
     	  <ul class="nav nav-pills nav-justified">
-	    	<li class="nav-item">${rvo.sell_no}</li>
 	      	<li class="nav-item"><a class="detailLink" href="#">${rvo.receipt_no }</a></li>
 	      	<li class="nav-item">${rvo.pname }</li>
+	      	<li class="nav-item">${rvo.p_count }</li>
 	      	<c:choose>
 	      		<c:when test="${rvo.pay_method eq '현금'}">
 	      			<li class="nav-item">현금</li>
