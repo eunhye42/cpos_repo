@@ -34,6 +34,7 @@
       <th>할인율</th>
       <th>유통기한</th>
       <th>상태</th>
+      <th>기타</th>
     </tr>
     </thead>
     <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
@@ -115,7 +116,7 @@ function  printList(list, itemTotal, page){
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
       uls +='<td>'+svo.discount_rate+' %'+'</td>';
       uls +='<td class="ex_date">'+exdate+'</td>';
-      console.log(scrap);
+      //console.log(scrap);
       if(scrap < 1){ 
     	  uls += '<td class="text-danger">폐기예정';
       }else if(scrap <= 3){
@@ -123,7 +124,7 @@ function  printList(list, itemTotal, page){
       }else {
     	  uls += '<td class="text-success">'+"여유";
       }
-      uls += '</td>';
+      uls += '</td><td><button>변경</button></td>';
      }
 	  }else{
 		 uls += '<tr><td rowspan="6">해당 상품이 없습니다.</td>';
@@ -173,10 +174,23 @@ $("#mcate").on("change", function() {
 	
 	$(document).on("click",".mod_qntBtn", function() {
 		$(this).closest('tr').find("td:nth-child(3) input:first-child").attr("readonly",false);
+		$(this).closest('tr').find(".qnt").before('<button type="button" class="btn-outline-primary btn-sm qnt_btn">-</button>').trigger("create");
+		$(this).closest('tr').find(".qnt").after('<button type="button" class="btn-outline-primary btn-sm qnt_btn">+</button>').trigger("create");
 		let modbtn = '<button type="button" class="modBtn btn btn-outline-success">수정완료</button>';
 		$(this).after(modbtn).trigger("create");
 		$(this).remove();
 	});
+	
+	$(document).on("click",".qnt_btn", function() {
+		let qnt = $(this).closest('tr').find(".qnt").val();
+		console.log(qnt);
+		if($(this).text()=='+'){
+			qnt++;
+		}else if(qnt>0){
+			qnt--;
+		}
+			$(this).closest('tr').find(".qnt").val(qnt);
+	})
 	
 	$(document).on("click", ".modBtn", function() {
 		let val = $(this).closest('tr').find(".qnt").val();
