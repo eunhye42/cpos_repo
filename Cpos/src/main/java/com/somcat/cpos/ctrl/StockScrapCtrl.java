@@ -93,8 +93,13 @@ public class StockScrapCtrl {
 	  @ResponseBody
 	  @PostMapping("/qntmodify")
 		public String modqnt(InventoryVO ivo) {
-			int re = ssv.modifyQuantity(ivo);
-			return re==1?"1":"0";
+		  int rt = 0;
+		  if(ivo.getInv_qnt() ==0) {
+			  rt = ssv.removeInventory(ivo.getInventory_no());
+		  }else {
+			  rt = ssv.modifyQuantity(ivo);
+		  }
+			return rt == 1?"1":"0";
 		}
 	  
 	  @GetMapping(value = "/getIlist/{large}/{medium}/{page}", produces = {

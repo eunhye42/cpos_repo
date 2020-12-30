@@ -188,6 +188,9 @@ $("#mcate").on("change", function() {
 			qnt++;
 		}else if(qnt>0){
 			qnt--;
+			if(qnt==0){
+				alert("수량을 0으로 변경하면 상품이 삭제됩니다.");
+			}
 		}
 			$(this).closest('tr').find(".qnt").val(qnt);
 	})
