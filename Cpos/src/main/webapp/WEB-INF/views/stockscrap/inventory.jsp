@@ -26,11 +26,11 @@
   
   <table class="table table-hover mt-3 text-center card-ivory">
     <thead>
-    <tr class="table-primary">
-      <th>카테고리</th>
+    <tr class="table-primary inv_tr">
+      <th class="first_td" id="all-chk">카테고리</th>
       <th>상품명</th>
       <th>수량</th>
-      <th>수량수정<button id="all_qnt">전체 수량 변경</button></th>
+      <th><button id="all_qnt" class="btn btn-outline-warning text-dark">수량 변경</button></th>
       <th>할인율</th>
       <th>유통기한</th>
       <th>상태</th>
@@ -110,7 +110,7 @@ function  printList(list, itemTotal, page){
     	 //let scrap = exScrap(exdate);
     	 let scrap = exScrap(svo.expire_date);
       uls +='<tr>';
-      uls +='<td class="text-info"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
+      uls +='<td class="text-info first_td"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
       uls +='<td><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
       uls +='<td class="text-success"><input type="number" value="'+svo.inv_qnt+'" class="qnt" min="0" readonly></td>';
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
@@ -124,7 +124,7 @@ function  printList(list, itemTotal, page){
       }else {
     	  uls += '<td class="text-success">'+"여유";
       }
-      uls += '</td><td><button class="i_detailBtn">변경</button></td>';
+      uls += '</td><br><td><button class="i_detailBtn btn btn-outline-primary">변경</button></td>';
      }
 	  }else{
 		 uls += '<tr><td rowspan="6">해당 상품이 없습니다.</td>';
@@ -257,6 +257,10 @@ $("#mcate").on("change", function() {
 	$(document).on("click", "#all_qnt", function() {
 		  //check_box 생성
 		  //전체 값 리스트 전달
+		  let chkbox = '<th><input type="checkbox"></th>';
+		  $(this).closest('table').find('tr .first_td').before(chkbox).trigger("create");
+		  $(this).after('<button id="allqnt_submit" class="btn btn-outline-success text-dark">변경완료</button>').trigger("create");
+		  $(this).remove();
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
