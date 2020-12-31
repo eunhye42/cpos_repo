@@ -30,7 +30,7 @@
       <th>카테고리</th>
       <th>상품명</th>
       <th>수량</th>
-      <th>수량수정</th>
+      <th>수량수정<button id="all_qnt">전체 수량 변경</button></th>
       <th>할인율</th>
       <th>유통기한</th>
       <th>상태</th>
@@ -124,7 +124,7 @@ function  printList(list, itemTotal, page){
       }else {
     	  uls += '<td class="text-success">'+"여유";
       }
-      uls += '</td><td><button>변경</button></td>';
+      uls += '</td><td><button class="i_detailBtn">변경</button></td>';
      }
 	  }else{
 		 uls += '<tr><td rowspan="6">해당 상품이 없습니다.</td>';
@@ -193,7 +193,13 @@ $("#mcate").on("change", function() {
 			}
 		}
 			$(this).closest('tr').find(".qnt").val(qnt);
-	})
+	});
+	
+	$(document).on("click", ".i_detailBtn", function() {
+		let detail = $(this).closest('tr').find(".ino").val();
+		console.log(detail);
+		//디테일 변경 하는 모달 띄우기 (수정/삭제)
+	});
 	
 	$(document).on("click", ".modBtn", function() {
 		let val = $(this).closest('tr').find(".qnt").val();
@@ -248,5 +254,9 @@ $("#mcate").on("change", function() {
 	    listUp(large, medium, $(this).attr("href"));
 	  });
 	
+	$(document).on("click", "#all_qnt", function() {
+		  //check_box 생성
+		  //전체 값 리스트 전달
+	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
