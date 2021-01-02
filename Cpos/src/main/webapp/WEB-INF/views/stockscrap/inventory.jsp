@@ -27,7 +27,7 @@
   <table class="table table-hover mt-3 text-center card-ivory">
     <thead>
     <tr class="table-primary inv_tr">
-      <th class="first_td" id="all-chk">카테고리</th>
+      <th id="all-chk">카테고리</th>
       <th>상품명</th>
       <th>수량</th>
       <th><button id="all_qnt" class="btn btn-outline-warning text-dark">수량 변경</button></th>
@@ -110,7 +110,7 @@ function  printList(list, itemTotal, page){
     	 //let scrap = exScrap(exdate);
     	 let scrap = exScrap(svo.expire_date);
       uls +='<tr>';
-      uls +='<td class="text-info first_td"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
+      uls +='<td class="text-info"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
       uls +='<td><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
       uls +='<td class="text-success"><input type="number" value="'+svo.inv_qnt+'" class="qnt" min="0" readonly></td>';
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
@@ -183,7 +183,6 @@ $("#mcate").on("change", function() {
 	
 	$(document).on("click",".qnt_btn", function() {
 		let qnt = $(this).closest('tr').find(".qnt").val();
-		console.log(qnt);
 		if($(this).text()=='+'){
 			qnt++;
 		}else if(qnt>0){
@@ -257,10 +256,22 @@ $("#mcate").on("change", function() {
 	$(document).on("click", "#all_qnt", function() {
 		  //check_box 생성
 		  //전체 값 리스트 전달
-		  let chkbox = '<th><input type="checkbox"></th>';
-		  $(this).closest('table').find('tr .first_td').before(chkbox).trigger("create");
+		  let chkbox = '<td><input type="checkbox" class="check"></td>';
+		  $(this).closest('table').find('th:first-child').before('<th><input type="checkbox" id="all_check"></th>').trigger("create");
+		  $(this).closest('table').find('td:first-child').before(chkbox).trigger("create");
 		  $(this).after('<button id="allqnt_submit" class="btn btn-outline-success text-dark">변경완료</button>').trigger("create");
 		  $(this).remove();
+		  $(this).closest('table').find(".qnt").attr("readonly",false);
+	});
+	
+	$(document).on("click", "#all_check", function() {
+		console.log("check!!");
+		console.log($(this).is(":checked"));
+		if($(this).is(":checked") == true){
+			$(".check").attr("checked", true);
+		}else{
+			$(".check").attr("checked", false);
+		}
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
