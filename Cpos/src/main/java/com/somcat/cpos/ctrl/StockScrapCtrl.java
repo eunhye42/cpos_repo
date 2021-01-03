@@ -102,6 +102,16 @@ public class StockScrapCtrl {
 			return rt == 1?"1":"0";
 		}
 	  
+	  @ResponseBody
+	  @PostMapping("/allqnt_mod")
+	  public int allqnt(@RequestBody ArrayList<InventoryVO> jsonData) throws Exception{
+		  if(jsonData.size() != 0) {
+			  int a = ssv.modifyQuantity(jsonData);
+			  return a;
+		  }
+		  return 0;
+	  }
+	  
 	  @GetMapping(value = "/getIlist/{large}/{medium}/{page}", produces = {
 			  MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
 	  public ResponseEntity<InventoryDTO> list(

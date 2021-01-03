@@ -69,6 +69,15 @@ public class StockScrapDAO implements StockScrapDAOIntf{
 	}
 
 	@Override
+	public int updateQuantity(List<InventoryVO> ilist) {
+		int a=0;
+		for (InventoryVO ivo : ilist) {
+			a += sql.update(ns+"modqnt", ivo);
+		}
+		return a;
+	}
+	
+	@Override
 	public int deleteInventory(List<Integer> ino) {
 		for(Integer i : ino) {
 			sql.delete(ns+"delete", i);

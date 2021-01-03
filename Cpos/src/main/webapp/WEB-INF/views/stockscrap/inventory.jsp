@@ -260,7 +260,7 @@ $("#mcate").on("change", function() {
 		  $(this).closest('table').find('th:first-child').before('<th><input type="checkbox" id="all_check"></th>').trigger("create");
 		  $(this).closest('table').find('td:first-child').before(chkbox).trigger("create");
 		  $(this).after('<button id="allqnt_submit" class="btn btn-outline-success text-dark">변경완료</button>').trigger("create");
-		  $(this).remove();
+		  $(this).attr("style","display:none");
 		  $(this).closest('table').find(".qnt").attr("readonly",false);
 	});
 	
@@ -272,6 +272,42 @@ $("#mcate").on("change", function() {
 		}else{
 			$(".check").attr("checked", false);
 		}
+	});
+	
+	$(document).on("click", "#allqnt_submit", function() {
+		  console.log("allqnt_submit click!");
+		  $(this).closest('th').find('button:first-child').attr("style","display:block");
+	    $(this).attr("style","display:none");
+		  let modlist = $(".check").is(":checked");
+		  console.log(modlist);
+		  let datas = [];
+		    for (let i = 0; i <modlist.length; i++) {
+		        let scData = {
+		        		inventory_no:$(".ino").eq(i).val(),
+		            inv_qnt:$(".qnt").eq(i).val()};
+		        datas.push(scData);
+		    }
+		    jQuery.ajaxSettings.traditional = true;
+		    $.ajax({
+		      url:"/stockscrap/allqnt_mod",
+		      type:"POST",
+		      dataType:"json",
+		      data:JSON.stringify(datas),
+		      contentType: "application/json; charset=utf-8",
+		      success: function(data) {
+		        alert(data>0?"처리완료!"+data:"변경된 게 없습니다."+data);
+		        let page = $("li.active a").text();
+		        if(page > Math.ceil(page/10.0)*10)
+		          listUp($("#lcate").val(), $("#mcate").val(), page);
+		        else
+		          listUp($("#lcate").val(), $("#mcate").val(), page-1);
+		        $("#all_check").closest('th').remove();
+		      },
+		      error: function(e) {
+		        alert("에러메시지:관리자에게 문의하세요~");
+		        console.log(e);
+		      }
+		    });
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>

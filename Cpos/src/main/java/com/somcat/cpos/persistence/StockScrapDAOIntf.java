@@ -18,6 +18,7 @@ public interface StockScrapDAOIntf {
 	public List<Integer> insertScrap(List<ScrapVO> svo);
 	public List<ScrapVO> selectScrapList(Date date);
 	public int updateQuantity(InventoryVO ivo);
+	public int updateQuantity(List<InventoryVO> ilist);
 	public int deleteInven(int inventory_no);
 	public int deleteInventory(List<Integer> inventory_no);
 	public List<CategoryVO> selectAllCate();

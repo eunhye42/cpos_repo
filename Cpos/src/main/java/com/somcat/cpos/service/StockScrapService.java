@@ -56,6 +56,11 @@ public class StockScrapService implements StockScrapServiceIntf{
 	public int modifyQuantity(InventoryVO ivo) {
 		return sdao.updateQuantity(ivo);
 	}
+	
+	@Override
+	public int modifyQuantity(List<InventoryVO> ilist) {
+		return sdao.updateQuantity(ilist);
+	}
 
 	@Override
 	public int removeInventory(int inventory_no) {
@@ -94,4 +99,5 @@ public class StockScrapService implements StockScrapServiceIntf{
 	public int getTotalCount(Criterion cri) {
 		return sdao.totalCount(cri);
 	}
+	
 }
