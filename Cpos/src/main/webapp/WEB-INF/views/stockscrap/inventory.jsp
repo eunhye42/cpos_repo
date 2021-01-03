@@ -256,7 +256,7 @@ $("#mcate").on("change", function() {
 	$(document).on("click", "#all_qnt", function() {
 		  //check_box 생성
 		  //전체 값 리스트 전달
-		  let chkbox = '<td><input type="checkbox" class="check"></td>';
+		  let chkbox = '<td><input type="checkbox" class="check" name="qnt_chk"></td>';
 		  $(this).closest('table').find('th:first-child').before('<th><input type="checkbox" id="all_check"></th>').trigger("create");
 		  $(this).closest('table').find('td:first-child').before(chkbox).trigger("create");
 		  $(this).after('<button id="allqnt_submit" class="btn btn-outline-success text-dark">변경완료</button>').trigger("create");
@@ -278,15 +278,15 @@ $("#mcate").on("change", function() {
 		  console.log("allqnt_submit click!");
 		  $(this).closest('th').find('button:first-child').attr("style","display:block");
 	    $(this).attr("style","display:none");
-		  let modlist = $(".check").is(":checked");
-		  console.log(modlist);
 		  let datas = [];
-		    for (let i = 0; i <modlist.length; i++) {
+		  $("input[name=qnt_chk]:checked").each(function() {
 		        let scData = {
-		        		inventory_no:$(".ino").eq(i).val(),
-		            inv_qnt:$(".qnt").eq(i).val()};
+		        		inventory_no:$(this).closest('tr').find(".ino").val(),
+		            inv_qnt:$(this).closest('tr').find(".qnt").val()};
 		        datas.push(scData);
-		    }
+		  });
+		    
+		    console.log(datas);
 		    jQuery.ajaxSettings.traditional = true;
 		    $.ajax({
 		      url:"/stockscrap/allqnt_mod",
