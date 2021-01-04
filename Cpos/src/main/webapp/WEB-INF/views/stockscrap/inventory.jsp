@@ -198,6 +198,7 @@ $("#mcate").on("change", function() {
 		let detail = $(this).closest('tr').find(".ino").val();
 		console.log(detail);
 		//디테일 변경 하는 모달 띄우기 (수정/삭제)
+		modal
 	});
 	
 	$(document).on("click", ".modBtn", function() {
