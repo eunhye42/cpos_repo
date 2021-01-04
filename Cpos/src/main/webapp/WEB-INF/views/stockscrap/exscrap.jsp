@@ -61,7 +61,8 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="6" class="text-center"><button type="button" class="btn btn-outline-dark" id="allscrap">현재 페이지 전체 폐기</button></td>
+        <td class="text-center"><a class="btn btn-outline-primary" href="/stockscrap/inventory">재고</a></td>
+        <td colspan="5" class="text-center"><button type="button" class="btn btn-outline-dark" id="allscrap">현재 페이지 전체 폐기</button></td>
       </tr>
     </tfoot>
   </table>
