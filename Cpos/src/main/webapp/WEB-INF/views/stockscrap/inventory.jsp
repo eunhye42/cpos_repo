@@ -50,6 +50,58 @@
   </table> -->
   <div id="itemPaging" class="mb-5">
   </div>
+  <div>
+  <!-- 인벤토리 수정 Modal -->
+    <div class="modal fade" id="invenModal">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="display: inline-block;text-align: center;">
+               <h4 class="modal-title">상품 정보 수정</h4>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body" style="text-align: center;">
+               <table class="table table-bordered">
+                     <tr>
+                        <th class="table-primary">ino</th>
+                        <td id="dt_ino"></td>
+                        <th class="table-success">바코드</th>
+                        <td id="dt_barcode"></td>
+                     </tr>
+                     <tr>
+                        <th>상품명</th>
+                        <td id="dt_pname"></td>
+                        <th>수량</th>
+                        <td id="dt_qnt"></td>
+                     </tr>
+                     <tr>
+                        <th>카테고리</th>
+                        <td id="dt_cate"></td>
+                     </tr>
+                     <tr>
+                        <th>원가</th>
+                        <td id="dt_gPrice"></td>
+                     </tr>
+                     <tr>
+                        <th>할인률(%)</th>
+                        <td id="dt_dc"></td>
+                     </tr>
+                     <tr>
+                        <th>상태</th>
+                        <td id="dt_state"></td>
+                     </tr>
+               </table>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-primary" name="idt_modBtn">수정완료</button>
+               <button type="button" class="btn btn-danger" name="ccBtn" data-dismiss="modal">취소</button>
+            </div>
+         </div>
+      </div>
+   </div>
+  </div>
+  
 </div>
   </section>
 <script>
@@ -110,11 +162,11 @@ function  printList(list, itemTotal, page){
     	 //let scrap = exScrap(exdate);
     	 let scrap = exScrap(svo.expire_date);
       uls +='<tr>';
-      uls +='<td class="text-info"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
-      uls +='<td><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
+      uls +='<td class="text-info" class="cate"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
+      uls +='<td class="pname"><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
       uls +='<td class="text-success"><input type="number" value="'+svo.inv_qnt+'" class="qnt" min="0" readonly></td>';
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
-      uls +='<td>'+svo.discount_rate+' %'+'</td>';
+      uls +='<td class="dc">'+svo.discount_rate+' %'+'</td>';
       uls +='<td class="ex_date">'+exdate+'</td>';
       //console.log(scrap);
       if(scrap < 1){ 
@@ -196,9 +248,20 @@ $("#mcate").on("change", function() {
 	
 	$(document).on("click", ".i_detailBtn", function() {
 		let detail = $(this).closest('tr').find(".ino").val();
-		console.log(detail);
+		let pname = $(this).closest('tr').find(".pname").text();
+		let cate = $(this).closest('tr').find(".cate").text();
+		//let gPrice = $(this).closest('tr').find(".gPrice").text();
+		let qnt = $(this).closest('tr').find(".qnt").val();
+		let dc = $(this).closest('tr').find(".dc").text();
+		//console.log(detail);
 		//디테일 변경 하는 모달 띄우기 (수정/삭제)
-		modal
+		$("#dt_ino").text(detail);
+		$("#dt_pname").text(pname);
+		$("#dt_cate").text(cate);
+		//$("#dt_gprice").text(gPrice);
+		$("#dt_qnt").text(qnt);
+		$("#dt_dc").text(dc);
+		$("#invenModal").modal();
 	});
 	
 	$(document).on("click", ".modBtn", function() {
