@@ -50,9 +50,9 @@
 
 <select id="ilist" parameterType="Criterion" resultType="InventoryVO">
   <![CDATA[
-  select inventory_no, inv_qnt, pname, category, large, medium, discount_rate, expire_date, status 
+  select inventory_no, inv_qnt, pname, category, large, medium, get_price, discount_rate, expire_date, status 
   from (select /*+INDEX_DESC(tbl_inventory pk_inventory)*/
-   rownum as rn, inventory_no, inv_qnt, pname, i.category as category, large, medium, discount_rate, expire_date, status
+   rownum as rn, inventory_no, inv_qnt, pname, i.category as category, large, medium, i.get_price, discount_rate, expire_date, status
    from tbl_inventory i inner join tbl_category c 
    on i.category = c.category 
    where 1>0

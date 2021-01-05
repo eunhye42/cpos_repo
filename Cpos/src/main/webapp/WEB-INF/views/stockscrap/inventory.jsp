@@ -77,18 +77,20 @@
                      <tr>
                         <th>카테고리</th>
                         <td id="dt_cate"></td>
-                     </tr>
-                     <tr>
                         <th>원가</th>
                         <td id="dt_gPrice"></td>
                      </tr>
                      <tr>
+                        <th>유통기한</th>
+                        <td id="dt_exdate"></td>
                         <th>할인률(%)</th>
                         <td id="dt_dc"></td>
                      </tr>
                      <tr>
                         <th>상태</th>
                         <td id="dt_state"></td>
+                        <th>상태변경</th>
+                        <td id="dt_stateBtns"></td>
                      </tr>
                </table>
             </div>
@@ -162,19 +164,20 @@ function  printList(list, itemTotal, page){
     	 //let scrap = exScrap(exdate);
     	 let scrap = exScrap(svo.expire_date);
       uls +='<tr>';
-      uls +='<td class="text-info" class="cate"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
+      uls +='<td class="text-info cate"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
       uls +='<td class="pname"><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
       uls +='<td class="text-success"><input type="number" value="'+svo.inv_qnt+'" class="qnt" min="0" readonly></td>';
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
+      uls +='<td class="gPrice" style="display:none;">'+svo.get_price+'</td>';
       uls +='<td class="dc">'+svo.discount_rate+' %'+'</td>';
-      uls +='<td class="ex_date">'+exdate+'</td>';
+      uls +='<td class="ex_date">'+exdate+'</td>'+'<td class="state "';
       //console.log(scrap);
       if(scrap < 1){ 
-    	  uls += '<td class="text-danger">폐기예정';
+    	  uls += 'text-danger">폐기예정';
       }else if(scrap <= 3){
-    	  uls += '<td class="text-warning">기한임박';
+    	  uls += 'text-warning">기한임박';
       }else {
-    	  uls += '<td class="text-success">'+"여유";
+    	  uls += 'text-success">'+"여유";
       }
       uls += '</td><br><td><button class="i_detailBtn btn btn-outline-primary">변경</button></td>';
      }
@@ -250,17 +253,21 @@ $("#mcate").on("change", function() {
 		let detail = $(this).closest('tr').find(".ino").val();
 		let pname = $(this).closest('tr').find(".pname").text();
 		let cate = $(this).closest('tr').find(".cate").text();
-		//let gPrice = $(this).closest('tr').find(".gPrice").text();
+		let gPrice = $(this).closest('tr').find(".gPrice").text();
 		let qnt = $(this).closest('tr').find(".qnt").val();
+		let exdate = $(this).closest('tr').find(".ex_date").text();
 		let dc = $(this).closest('tr').find(".dc").text();
+		let state = $(this).closest('tr').find(".state").text();
 		//console.log(detail);
 		//디테일 변경 하는 모달 띄우기 (수정/삭제)
 		$("#dt_ino").text(detail);
 		$("#dt_pname").text(pname);
 		$("#dt_cate").text(cate);
-		//$("#dt_gprice").text(gPrice);
+		$("#dt_gPrice").text(gPrice+"원");
 		$("#dt_qnt").text(qnt);
+		$("#dt_exdate").text(exdate);
 		$("#dt_dc").text(dc);
+		$("#dt_state").text(state);
 		$("#invenModal").modal();
 	});
 	
