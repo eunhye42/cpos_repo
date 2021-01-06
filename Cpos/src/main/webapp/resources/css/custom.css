@@ -68,6 +68,10 @@ section.scrap {
   background: linear-gradient(180deg, #fff, #343a40) !important;
 }
 
+.bg-ivory{
+	background-color: #ffffce;
+}
+
 .txt-ivory{
   color: #ffffdf;
 }
@@ -96,3 +100,13 @@ section{
 	margin-bottom: 150px;
 }
 
+input{
+	border: none;
+	text-align: right !important;
+	background-color: transparent;
+}
+
+input:focus {
+	border: black;
+	background-color: #ffffff;
+}

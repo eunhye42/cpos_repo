@@ -53,10 +53,11 @@ public class InventoryVO {
       this.status = status;
    }
 
-   public InventoryVO(int inventory_no, int inv_qnt, String pname, int category,
+   public InventoryVO(int inventory_no, int inv_qnt, int barcode, String pname, int category,
          String large, String medium, int get_price, int discount_rate, Date expire_date, int status) {
       this.inventory_no = inventory_no;
       this.inv_qnt = inv_qnt;
+      this.barcode = barcode;
       this.pname = pname;
       this.category = category;
       this.catelm = new CategoryVO(large, medium);

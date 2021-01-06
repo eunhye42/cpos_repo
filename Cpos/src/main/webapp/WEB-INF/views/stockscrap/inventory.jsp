@@ -69,28 +69,28 @@
                         <td id="dt_barcode"></td>
                      </tr>
                      <tr>
-                        <th>상품명</th>
+                        <th class="table-primary">상품명</th>
                         <td id="dt_pname"></td>
-                        <th>수량</th>
-                        <td id="dt_qnt"></td>
+                        <th class="table-success">수량</th>
+                        <td class="bg-ivory"><input type="number" id="dt_qnt" min="0" style="width:80px">개</td>
                      </tr>
                      <tr>
-                        <th>카테고리</th>
+                        <th class="table-primary">카테고리</th>
                         <td id="dt_cate"></td>
-                        <th>원가</th>
-                        <td id="dt_gPrice"></td>
+                        <th class="table-success">원가</th>
+                        <td id="dt_gPrice" class="pl-3 pr-3" style="text-align:right"></td>
                      </tr>
                      <tr>
-                        <th>유통기한</th>
+                        <th class="table-primary">유통기한</th>
                         <td id="dt_exdate"></td>
-                        <th>할인률(%)</th>
-                        <td id="dt_dc"></td>
+                        <th class="table-success">할인률(%)</th>
+                        <td class="bg-ivory"><input type="number" id="dt_dc" min="0" max="100">%</td>
                      </tr>
                      <tr>
-                        <th>상태</th>
+                        <th class="table-primary">상태</th>
                         <td id="dt_state"></td>
-                        <th>상태변경</th>
-                        <td id="dt_stateBtns"></td>
+                        <th class="table-success">상태변경</th>
+                        <td class="bg-ivory" id="dt_stateBtns"><button type="button" class="mr-2">처분</button><button type="button">삭제</button></td>
                      </tr>
                </table>
             </div>
@@ -168,8 +168,9 @@ function  printList(list, itemTotal, page){
       uls +='<td class="pname"><input type="hidden" value="'+svo.inventory_no+'" class="ino">'+svo.pname+'</td>';
       uls +='<td class="text-success"><input type="number" value="'+svo.inv_qnt+'" class="qnt" min="0" readonly></td>';
       uls +='<td><button type="button" class="mod_qntBtn btn btn-warning">수정</button></td>';
+      uls +='<td class="barcode" style="display:none;">'+svo.barcode+'</td>';
       uls +='<td class="gPrice" style="display:none;">'+svo.get_price+'</td>';
-      uls +='<td class="dc">'+svo.discount_rate+' %'+'</td>';
+      uls +='<td><span class="dc">'+svo.discount_rate+'</span>%</td>';
       uls +='<td class="ex_date">'+exdate+'</td>'+'<td class="state "';
       //console.log(scrap);
       if(scrap < 1){ 
@@ -251,6 +252,7 @@ $("#mcate").on("change", function() {
 	
 	$(document).on("click", ".i_detailBtn", function() {
 		let detail = $(this).closest('tr').find(".ino").val();
+		let barcode = $(this).closest('tr').find(".barcode").text();
 		let pname = $(this).closest('tr').find(".pname").text();
 		let cate = $(this).closest('tr').find(".cate").text();
 		let gPrice = $(this).closest('tr').find(".gPrice").text();
@@ -261,12 +263,13 @@ $("#mcate").on("change", function() {
 		//console.log(detail);
 		//디테일 변경 하는 모달 띄우기 (수정/삭제)
 		$("#dt_ino").text(detail);
+		$("#dt_barcode").text(barcode);
 		$("#dt_pname").text(pname);
 		$("#dt_cate").text(cate);
-		$("#dt_gPrice").text(gPrice+"원");
-		$("#dt_qnt").text(qnt);
+		$("#dt_gPrice").text(gPrice+"  원");
+		$("#dt_qnt").val(qnt);
 		$("#dt_exdate").text(exdate);
-		$("#dt_dc").text(dc);
+		$("#dt_dc").val(dc);
 		$("#dt_state").text(state);
 		$("#invenModal").modal();
 	});
