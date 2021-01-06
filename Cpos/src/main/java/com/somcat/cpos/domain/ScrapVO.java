@@ -30,16 +30,9 @@ public class ScrapVO {
 	
 	public ScrapVO(int scrap_no, String member_id, int barcode, int category, int get_price, Date scrap_date,
 			Date expire_date, String pname, int scrap_qnt, int ino) {
+		this(member_id, barcode, pname, category, get_price, expire_date, scrap_qnt, ino);
 		this.scrap_no = scrap_no;
-		this.member_id = member_id;
-		this.barcode = barcode;
-		this.category = category;
-		this.get_price = get_price;
 		this.scrap_date = scrap_date;
-		this.expire_date = expire_date;
-		this.pname = pname;
-		this.scrap_qnt = scrap_qnt;
-		this.ino = ino;
 	}
 
 	public int getScrap_no() {
