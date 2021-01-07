@@ -90,13 +90,13 @@
                         <th class="table-primary">상태</th>
                         <td id="dt_state"></td>
                         <th class="table-success">상태변경</th>
-                        <td class="bg-ivory" id="dt_stateBtns"><button type="button" class="mr-2">처분</button><button type="button">삭제</button></td>
+                        <td class="bg-ivory" id="dt_stateBtns"><button type="button" class="mr-2">처분</button><button type="button" id="dt_dellBtn">삭제</button></td>
                      </tr>
                </table>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-               <button type="button" class="btn btn-primary" name="idt_modBtn">수정완료</button>
+               <button type="button" class="btn btn-primary" name="idt_modBtn" id="idtmodBtn">수정완료</button>
                <button type="button" class="btn btn-danger" name="ccBtn" data-dismiss="modal">취소</button>
             </div>
          </div>
@@ -274,21 +274,32 @@ $("#mcate").on("change", function() {
 		$("#invenModal").modal();
 	});
 	
+	$("#dt_dellBtn").on("click", function() {
+		let page = $("li.active a").text();
+		let ino = $(this).closest('table').find("#dt_ino").text();
+		//console.log(ino);
+		modifyQnt(ino,0);
+	});
+	
 	$(document).on("click", ".modBtn", function() {
-		let val = $(this).closest('tr').find(".qnt").val();
+		let qntVal = $(this).closest('tr').find(".qnt").val();
 		let ino = $(this).closest('tr').find(".ino").val();
 		
-		$.ajax({
-			type: "post",
-			url: "/stockscrap/qntmodify",
-			data: {inventory_no:ino,inv_qnt:val}
-		}).done(function(result) {
-			result==1?alert("수량변경 성공"):alert("수량변경 실패");
-		}).fail(function(e) {
-			console.log("error:"+e);
-		});
-		location.replace("/stockscrap/inventory");
+		modifyQnt(ino,qntVal);
 	});
+	
+	function modifyQnt(ino,qnt) {
+		$.ajax({
+		      type: "post",
+		      url: "/stockscrap/qntmodify",
+		      data: {inventory_no:ino,inv_qnt:qnt}
+		    }).done(function(result) {
+		      if(result!=1) alert("수량변경 실패");
+		    }).fail(function(e) {
+		      console.log("error:"+e);
+		    });
+		location.replace("/stockscrap/inventory");
+	}
 	
 	function printPaging(itemTotal, page) {
 		let itemPage = '<ul class="pagination justify-content-center">';
@@ -382,6 +393,22 @@ $("#mcate").on("change", function() {
 		        console.log(e);
 		      }
 		    });
+	});
+	
+	$("#idtmodBtn").on("click", function() {
+		let ino = $(".modal-body").find("#dt_ino").text();
+		let qnt = $(".modal-body").find("#dt_qnt").val();
+		let dc = $(".modal-body").find("#dt_dc").val();
+		$.ajax({
+			url: "/stockscrap/idtmodify",
+			type: "post",
+			data: {inventory_no:ino, inv_qnt:qnt, discount_rate:dc}
+				}).done(function(result) {
+					console.log("완료");
+					location.replace("/stockscrap/inventory");
+				}).fail(function(result) {
+					console.log(result);
+				});
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>

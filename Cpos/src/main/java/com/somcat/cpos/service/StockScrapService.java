@@ -61,6 +61,11 @@ public class StockScrapService implements StockScrapServiceIntf{
 	public int modifyQuantity(List<InventoryVO> ilist) {
 		return sdao.updateQuantity(ilist);
 	}
+	
+	@Override
+	public int modifyIdt(InventoryVO ivo) {
+		return sdao.updateIdt(ivo);
+	}
 
 	@Override
 	public int removeInventory(int inventory_no) {

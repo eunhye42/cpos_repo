@@ -19,6 +19,11 @@ public class InventoryVO {
    
    public InventoryVO() {}
 
+   public InventoryVO(int inventory_no, int inv_qnt) {
+	      this.inventory_no = inventory_no;
+	      this.inv_qnt = inv_qnt;
+   }
+   
    public InventoryVO(int inventory_no, int inv_qnt, int discount_rate, int status) {
       this.inventory_no = inventory_no;
       this.inv_qnt = inv_qnt;

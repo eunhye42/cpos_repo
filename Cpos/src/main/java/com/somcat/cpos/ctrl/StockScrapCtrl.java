@@ -103,6 +103,13 @@ public class StockScrapCtrl {
 		}
 	  
 	  @ResponseBody
+	  @PostMapping("/idtmodify")
+		public int idtmod(InventoryVO ivo) {
+		  log.info("ivo>>>>>>>"+ivo.toString());
+			return ssv.modifyIdt(ivo);
+		}
+	  
+	  @ResponseBody
 	  @PostMapping("/allqnt_mod")
 	  public int allqnt(@RequestBody ArrayList<InventoryVO> jsonData) throws Exception{
 		  if(jsonData.size() != 0) {

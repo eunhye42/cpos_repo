@@ -86,6 +86,9 @@
 <update id="modqnt" parameterType="InventoryVO">
   update tbl_inventory set inv_qnt = #{inv_qnt} where inventory_no = #{inventory_no}
 </update>
+<update id="modIdt" parameterType="InventoryVO">
+  update tbl_inventory set inv_qnt = #{inv_qnt}, discount_rate = #{discount_rate} where inventory_no = #{inventory_no}
+</update>
 <insert id="addscrap" parameterType="ScrapVO">
   insert into tbl_scrap values(seq_scrap_no.nextval, #{member_id}, #{barcode}, #{pname}, #{category}, #{get_price}, sysdate, #{expire_date}, #{scrap_qnt})
 </insert>

@@ -20,6 +20,7 @@ public interface StockScrapServiceIntf {
 	public List<ScrapVO> getScrapList(Date date);
 	public int modifyQuantity(InventoryVO ivo);
 	public int modifyQuantity(List<InventoryVO> ilist);
+	public int modifyIdt(InventoryVO ivo);
 	public int removeInventory(int inventory_no);
 	public List<CategoryVO> getAllCate();
 	public InventoryDTO getInvenList2(Criterion cri);
