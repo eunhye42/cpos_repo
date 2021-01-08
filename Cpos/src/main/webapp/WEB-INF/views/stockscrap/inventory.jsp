@@ -90,7 +90,7 @@
                         <th class="table-primary">상태</th>
                         <td id="dt_state"></td>
                         <th class="table-success">상태변경</th>
-                        <td class="bg-ivory" id="dt_stateBtns"><button type="button" class="mr-2">처분</button><button type="button" id="dt_dellBtn">삭제</button></td>
+                        <td class="bg-ivory" id="dt_stateBtns"><button type="button" class="mr-2" id="scBtn">처분</button><button type="button" id="dt_dellBtn">삭제</button></td>
                      </tr>
                </table>
             </div>
@@ -103,7 +103,34 @@
       </div>
    </div>
   </div>
-  
+  <div>
+    <div class="modal fade" id="i_Modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h3 class="modal-title">처분 사유</h3>
+            <button type="button" class="close xBtn" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <label> 분류 : </label>
+              <select class="form-select modal_sel">
+                <option value="0" selected="selected" disabled>선택해주세요</option>
+                <option value="1">상품 단종</option>
+                <option value="2">상품 문제</option>
+                <option value="3">기타 사유</option>
+              </select>
+            </div>
+            <textarea class="subTx" placeholder="내용을 입력해 주세요" rows="5"></textarea>
+            <div class="right_end">
+              <button type="button" class="btn btn-primary mr-2">확인</button>
+              <button type="button" class="btn btn-danger" id="close_sub" data-dismiss="modal">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
   </section>
 <script>
@@ -410,5 +437,20 @@ $("#mcate").on("change", function() {
 					console.log(result);
 				});
 	});
+	
+	$("#scBtn").on("click", function() {
+		console.log("처분 클릭");
+		$("#invenModal").modal('hide');
+		$("#i_Modal").modal('show');
+	});
+	
+	$("#close_sub").on("click", function() {
+		$("#invenModal").modal('show');
+	});
+	
+	$(".xBtn").on("click", function() {
+		$(".subTx").val("");
+		$(".modal_sel").val("0");
+	})
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
