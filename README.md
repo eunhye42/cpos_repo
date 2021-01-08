@@ -1,10 +1,17 @@
 
 **중요**
 
-## README.md 등 <>Code탭에 있는 파일들은 깃허브에서 직접 편집 자제하기.
+Portfolio : 
+Email : 
+Github :
 
-##  -깃에서 remote는 fork된 개인Main_repo로 연결하고 'push'
-
-+ 개인Main_repo로 push한 것을 'pull request'
-
-Readme..
+Cpos : 편의점 pos기를 웹 형태로 나타냄.
+주요 기능 : 
+본사/가맹점 구분
+head - 본사의 상품 등록/수정/삭제
+member - 회원 가입/관리
+order - 가맹점의 발주 등록/삭제/수령 관리
+inventory - 가맹점의 재고 수정/삭제/상태 관리
+scrap - (유통기한에 경과에 따른) 폐기 처리
+payment - 가맹점에서의 물건 판매 관리
+receipe - 영수증 관리 리스트/상세/지불형태별
