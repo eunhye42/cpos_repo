@@ -40,14 +40,12 @@
     <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
     <tbody id="tbody">
     </tbody>
+    <tfoot>
+      <tr><td>
+      <span id="scrapListBtn"><a class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a></span>
+      </td></tr>
+    </tfoot>
     </table>
-    <span id="scrapListBtn"><a class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a></span>
-    <!-- <tfoot>
-      <tr>
-        <td colspan="6" class="text-left"><a class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a></td>
-      </tr>
-    </tfoot> 
-  </table> -->
   <div id="itemPaging" class="mb-5">
   </div>
   <div>
@@ -123,7 +121,7 @@
             </div>
             <textarea class="subTx" placeholder="내용을 입력해 주세요" rows="5"></textarea>
             <div class="right_end">
-              <button type="button" class="btn btn-primary mr-2">확인</button>
+              <button type="button" class="btn btn-primary mr-2" id="subBtn">확인</button>
               <button type="button" class="btn btn-danger" id="close_sub" data-dismiss="modal">취소</button>
             </div>
           </div>
@@ -451,6 +449,12 @@ $("#mcate").on("change", function() {
 	$(".xBtn").on("click", function() {
 		$(".subTx").val("");
 		$(".modal_sel").val("0");
-	})
+	});
+	
+	$("#subBtn").on("click", function() {
+		//
+		let ino = $("#dt_ino").text();
+		let txt = $(this).closest(".subTx").val();
+	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
