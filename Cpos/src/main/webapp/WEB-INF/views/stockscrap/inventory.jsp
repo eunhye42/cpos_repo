@@ -42,12 +42,18 @@
     <tbody id="tbody">
     </tbody>
     <tfoot>
-      <tr><td colspan="8"><a id="scrapListBtn" class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a>
+      <tr>
+      <td colspan="1"></td>
+      <td colspan="5">
+      
+  <div id="itemPaging" class="mb-5">
+  </div>
+  </td>
+      <td colspan="2"><a id="scrapListBtn" class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a>
       </td></tr>
     </tfoot>
     </table>
-  <div id="itemPaging" class="mb-5">
-  </div>
+    
   <div>
   <!-- 인벤토리 수정 Modal -->
     <div class="modal fade" id="invenModal">
@@ -462,7 +468,7 @@ $("#mcate").on("change", function() {
 		console.log("상세:"+$("#mid").val()+"/"+$("#dt_barcode").text()+"/"
 				+$("#dt_pname").text()+"/"+$("#dt_ctgr").val()+"/"+$("#dt_gPrice").text()
 				+"/"+$("#dt_exdate").text()+"/"+$("#dt_qnt").val()+"/"+ino+"/"+div+"/"+content);
-		/*
+		
 		$.ajax({
 			url:"/stockscrap/scrap",
 			type:"post",
@@ -484,7 +490,7 @@ $("#mcate").on("change", function() {
 			alert("에러발생. 관리자에게 문의하세요.");
 			console.log(r)
 		});
-		*/
+		
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>
