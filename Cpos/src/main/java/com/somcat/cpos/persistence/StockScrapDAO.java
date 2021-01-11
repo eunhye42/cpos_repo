@@ -103,7 +103,9 @@ public class StockScrapDAO implements StockScrapDAOIntf{
 
 	@Override
 	public int insertScrap(ScrapVO svo) {
-		return sql.insert(ns+"addscrap", svo);
+		return svo.getScrap_div() == 0? 
+				sql.insert(ns+"addscrap", svo) 
+				: sql.insert(ns+"addscrap_dt", svo);
 	}
 
 	@Override

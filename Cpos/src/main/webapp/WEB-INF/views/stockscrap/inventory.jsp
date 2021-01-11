@@ -10,6 +10,7 @@
 <div class="container">
   <h1 class="text-center">재고리스트</h1>
   <!-- <a href="/stockscrap/new" class="text-right">재고 추가하기</a><br> -->
+  <input type="hidden" id="mid" value="${mvo.member_id }">
   <div class="cate">
   <label class="ml-3">대분류:</label>
   <select class="btn btn-outline-primary ml-3" id="lcate">
@@ -30,7 +31,7 @@
       <th id="all-chk">카테고리</th>
       <th>상품명</th>
       <th>수량</th>
-      <th><button id="all_qnt" class="btn btn-outline-warning text-dark">수량 변경</button></th>
+      <th><button id="all_qnt" class="btn btn-outline-warning text-dark">전체 변경</button></th>
       <th>할인율</th>
       <th>유통기한</th>
       <th>상태</th>
@@ -41,8 +42,7 @@
     <tbody id="tbody">
     </tbody>
     <tfoot>
-      <tr><td>
-      <span id="scrapListBtn"><a class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a></span>
+      <tr><td colspan="8"><a id="scrapListBtn" class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a>
       </td></tr>
     </tfoot>
     </table>
@@ -70,19 +70,20 @@
                         <th class="table-primary">상품명</th>
                         <td id="dt_pname"></td>
                         <th class="table-success">수량</th>
-                        <td class="bg-ivory"><input type="number" id="dt_qnt" min="0" style="width:80px">개</td>
+                        <td class="bg-ivory txt-right"><input type="number" id="dt_qnt" min="0" style="width:80px">개</td>
                      </tr>
                      <tr>
                         <th class="table-primary">카테고리</th>
-                        <td id="dt_cate"></td>
+                        <td><input type="hidden" id="dt_ctgr" value=""><span id="dt_cate"></span></td>
                         <th class="table-success">원가</th>
-                        <td id="dt_gPrice" class="pl-3 pr-3" style="text-align:right"></td>
+                        <td class="txt-right"><span id="dt_gPrice"></span>
+                        <span class="ml-2">원</span></td>
                      </tr>
                      <tr>
                         <th class="table-primary">유통기한</th>
                         <td id="dt_exdate"></td>
                         <th class="table-success">할인률(%)</th>
-                        <td class="bg-ivory"><input type="number" id="dt_dc" min="0" max="100">%</td>
+                        <td class="bg-ivory txt-right"><input type="number" id="dt_dc" min="0" max="100">%</td>
                      </tr>
                      <tr>
                         <th class="table-primary">상태</th>
@@ -114,9 +115,9 @@
               <label> 분류 : </label>
               <select class="form-select modal_sel">
                 <option value="0" selected="selected" disabled>선택해주세요</option>
-                <option value="1">상품 단종</option>
-                <option value="2">상품 문제</option>
-                <option value="3">기타 사유</option>
+                <option value="10">상품 단종</option>
+                <option value="20">상품 문제</option>
+                <option value="30">기타 사유</option>
               </select>
             </div>
             <textarea class="subTx" placeholder="내용을 입력해 주세요" rows="5"></textarea>
@@ -196,10 +197,10 @@ function  printList(list, itemTotal, page){
       uls +='<td class="barcode" style="display:none;">'+svo.barcode+'</td>';
       uls +='<td class="gPrice" style="display:none;">'+svo.get_price+'</td>';
       uls +='<td><span class="dc">'+svo.discount_rate+'</span>%</td>';
-      uls +='<td class="ex_date">'+exdate+'</td>'+'<td class="state "';
+      uls +='<td class="ex_date">'+exdate+'</td>'+'<td class="state ';
       //console.log(scrap);
       if(scrap < 1){ 
-    	  uls += 'text-danger">폐기예정';
+    	  uls += scrap>0?'text-danger">폐기예정':'text-danger">폐기';
       }else if(scrap <= 3){
     	  uls += 'text-warning">기한임박';
       }else {
@@ -280,6 +281,7 @@ $("#mcate").on("change", function() {
 		let barcode = $(this).closest('tr').find(".barcode").text();
 		let pname = $(this).closest('tr').find(".pname").text();
 		let cate = $(this).closest('tr').find(".cate").text();
+		let ctgr = $(this).closest('tr').find(".category").val();
 		let gPrice = $(this).closest('tr').find(".gPrice").text();
 		let qnt = $(this).closest('tr').find(".qnt").val();
 		let exdate = $(this).closest('tr').find(".ex_date").text();
@@ -291,7 +293,8 @@ $("#mcate").on("change", function() {
 		$("#dt_barcode").text(barcode);
 		$("#dt_pname").text(pname);
 		$("#dt_cate").text(cate);
-		$("#dt_gPrice").text(gPrice+"  원");
+		$("#dt_ctgr").val(ctgr);
+		$("#dt_gPrice").text(gPrice);
 		$("#dt_qnt").val(qnt);
 		$("#dt_exdate").text(exdate);
 		$("#dt_dc").val(dc);
@@ -437,7 +440,7 @@ $("#mcate").on("change", function() {
 	});
 	
 	$("#scBtn").on("click", function() {
-		console.log("처분 클릭");
+		//console.log("처분 클릭");
 		$("#invenModal").modal('hide');
 		$("#i_Modal").modal('show');
 	});
@@ -446,7 +449,7 @@ $("#mcate").on("change", function() {
 		$("#invenModal").modal('show');
 	});
 	
-	$(".xBtn").on("click", function() {
+	$(".xBtn, #close_sub").on("click", function() {
 		$(".subTx").val("");
 		$(".modal_sel").val("0");
 	});
@@ -454,7 +457,34 @@ $("#mcate").on("change", function() {
 	$("#subBtn").on("click", function() {
 		//
 		let ino = $("#dt_ino").text();
-		let txt = $(this).closest(".subTx").val();
+		let div = $(".modal_sel").val();
+		let content = $(".subTx").val();
+		console.log("상세:"+$("#mid").val()+"/"+$("#dt_barcode").text()+"/"
+				+$("#dt_pname").text()+"/"+$("#dt_ctgr").val()+"/"+$("#dt_gPrice").text()
+				+"/"+$("#dt_exdate").text()+"/"+$("#dt_qnt").val()+"/"+ino+"/"+div+"/"+content);
+		/*
+		$.ajax({
+			url:"/stockscrap/scrap",
+			type:"post",
+			data:{
+				member_id:$("#mid").val(),
+				barcode:$("#dt_barcode").text(),
+				pname:$("#dt_pname").text(),
+				category:$("#dt_ctgr").val(),
+				get_price:$("#dt_gPrice").text(),
+				expire_date:$("#dt_exdate").text(),
+				scrap_qnt:$("#dt_qnt").val(),
+				ino:ino,
+				scrap_div:div,
+				scrap_content:content
+			}
+		}).done(function(result) {
+			result==1?location.replace("/stockscrap/inventory"):alert("실패");
+		}).fail(function(r) {
+			alert("에러발생. 관리자에게 문의하세요.");
+			console.log(r)
+		});
+		*/
 	});
 </script>
 <jsp:include page="../common/footer.jsp"></jsp:include>

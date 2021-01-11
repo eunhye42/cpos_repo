@@ -13,11 +13,13 @@ public class ScrapVO {
 	private Date scrap_date;
 	private Date expire_date;
 	private int ino;
+	private int scrap_div;
+	private String scrap_content;
 	
 	public ScrapVO() {}
-	
+	//폐기 추가
 	public ScrapVO(String member_id, int barcode, String pname, int category, int get_price, 
-			Date expire_date, int scrap_qnt, int ino) {
+			Date expire_date, int scrap_qnt, int ino, int scrap_div, String scrap_content) {
 		this.member_id = member_id;
 		this.barcode = barcode;
 		this.pname = pname;
@@ -26,11 +28,14 @@ public class ScrapVO {
 		this.expire_date = expire_date;
 		this.scrap_qnt = scrap_qnt;
 		this.ino = ino;
+		this.scrap_div = scrap_div;
+		this.scrap_content = scrap_content;
 	}
 	
+	//폐기한거 볼때 사용될 것..
 	public ScrapVO(int scrap_no, String member_id, int barcode, int category, int get_price, Date scrap_date,
-			Date expire_date, String pname, int scrap_qnt, int ino) {
-		this(member_id, barcode, pname, category, get_price, expire_date, scrap_qnt, ino);
+			Date expire_date, String pname, int scrap_qnt, int ino, int scrap_div, String scrap_content) {
+		this(member_id, barcode, pname, category, get_price, expire_date, scrap_qnt, ino, scrap_div, scrap_content);
 		this.scrap_no = scrap_no;
 		this.scrap_date = scrap_date;
 	}
@@ -96,8 +101,19 @@ public class ScrapVO {
 	public int getIno() {
 		return ino;
 	}
-
 	public void setIno(int ino) {
 		this.ino = ino;
+	}
+	public int getScrap_div() {
+		return scrap_div;
+	}
+	public void setScrap_div(int scrap_div) {
+		this.scrap_div = scrap_div;
+	}
+	public String getScrap_content() {
+		return scrap_content;
+	}
+	public void setScrap_content(String scrap_content) {
+		this.scrap_content = scrap_content;
 	}
 }

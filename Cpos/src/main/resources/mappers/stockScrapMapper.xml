@@ -90,7 +90,10 @@
   update tbl_inventory set inv_qnt = #{inv_qnt}, discount_rate = #{discount_rate} where inventory_no = #{inventory_no}
 </update>
 <insert id="addscrap" parameterType="ScrapVO">
-  insert into tbl_scrap values(seq_scrap_no.nextval, #{member_id}, #{barcode}, #{pname}, #{category}, #{get_price}, sysdate, #{expire_date}, #{scrap_qnt})
+  insert into tbl_scrap values(seq_scrap_no.nextval, #{member_id}, #{barcode}, #{pname}, #{category}, #{get_price}, sysdate, #{expire_date}, #{scrap_qnt}, #{ino})
+</insert>
+<insert id="addscrap_dt" parameterType="ScrapVO">
+  insert into tbl_scrap values(seq_scrap_no.nextval, #{member_id}, #{barcode}, #{pname}, #{category}, #{get_price}, sysdate, #{expire_date}, #{scrap_qnt}, #{ino}, #{scrap_div}, #{scrap_content})
 </insert>
 <insert id="addsclist" parameterType="java.util.List">
   insert into tbl_scrap
@@ -98,7 +101,8 @@
   <foreach collection="list" item="ex" separator="UNION ALL">
     select #{ex.member_id} as member_id, #{ex.barcode} as barcode, #{ex.pname} as pname, 
     #{ex.category} as category, #{ex.get_price} as get_price, sysdate, 
-    #{ex.expire_date} as expire_date, #{ex.scrap_qnt} as scrap_qnt from dual
+    #{ex.expire_date} as expire_date, #{ex.scrap_qnt} as scrap_qnt, 
+    #{ex.ino} as ino, #{ex.scrap_div} as scrap_div, #{ex.scrap_content} as scrap_content from dual
   </foreach> ) a
 </insert>
 <select id="all" resultType="CategoryVO">

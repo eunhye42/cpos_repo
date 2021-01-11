@@ -127,3 +127,7 @@ input:focus {
 	display: flex;
 	justify-content: flex-end;
 }
+
+.txt-right{
+	text-align:right;
+}
