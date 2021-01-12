@@ -125,7 +125,7 @@ function  exprintList(list, itemTotal, page){
       let exdate = displayTime(svo.expire_date);
       uls +='<tr>';
       uls +='<td class="pname">'+svo.pname+'</td>';
-      uls +='<td class="text-primary"><input type="hidden" class="category" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
+      uls +='<td class="text-primary"><input type="hidden" class="cate" value="'+svo.category+'">'+svo.large+"/"+svo.medium+'</td>';
       uls +='<td class="hidden"><input type="hidden" class="barcode" value="'+svo.barcode+'">';
       uls +='<input type="hidden" class="ino" name="ino" value="'+svo.inventory_no+'">';
       uls +='<input type="hidden" class="mid" value="'+svo.member_id+'">';
@@ -216,15 +216,15 @@ $("#mcate").on("change", function() {
     }
   
   $(document).on("click", ".scrapBtn", function() {
-	 let barcode = $(this).closest('tr').find(".hidden").find("input[name=barcode]").val();
-	 let ex = $(this).closest('tr').find(".exdate").val();
-	 let ex2 = $(this).closest('tr').find(".exdate").text();
-	 //console.log("값-대분류:"+$("#lcate").val()+"/중:"+$("#mcate").val()+"/페이지:"+$("li.active a").text());
-	 let tr_chk = $(this).closest('tr');
+	  //let barcode = $(this).closest('tr').find(".hidden").find("input[name=barcode]").val();
+	  let ex = $(this).closest('tr').find(".exdate").val();
+	  let ex2 = $(this).closest('tr').find(".exdate").text();
+	  //console.log("값-대분류:"+$("#lcate").val()+"/중:"+$("#mcate").val()+"/페이지:"+$("li.active a").text());
+	  let tr_chk = $(this).closest('tr');
 	   $.ajax({
 	     type:"post",
 	     url:"/stockscrap/scrap",
-	     data: {barcode:barcode,
+	     data: {barcode:$(this).closest('tr').find(".barcode").val(),
 	    	 member_id:$(this).closest('tr').find(".mid").val(),
 	       pname:$(this).closest('tr').find(".pname").text(),
 	       category:$(this).closest('tr').find(".cate").val(),
