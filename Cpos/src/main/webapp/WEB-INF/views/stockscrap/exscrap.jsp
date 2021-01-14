@@ -164,7 +164,9 @@ $("#mcate").on("change", function() {
         		get_price:$(".get_price").eq(i).val(), 
         		expire_date:$(".exdate").eq(i).val(), 
         		scrap_qnt:$(".qnt").eq(i).text(),
-        		ino:$(".ino").eq(i).val()};
+        		ino:$(".ino").eq(i).val(),
+        		scrap_div:1,
+        		scrap_content:"전체폐기"};
         datas.push(scData);
     }
     jQuery.ajaxSettings.traditional = true;
