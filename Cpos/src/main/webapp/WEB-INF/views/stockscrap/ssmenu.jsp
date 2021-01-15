@@ -18,7 +18,12 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>점포 재고 수량 확인 </li>
             </ul>
             <hr>
+            <c:if test="${mvo ne null}">
             <a href="/stockscrap/inventory" class="btn btn-block card-ivory text-uppercase">GO</a>
+            </c:if>
+            <c:if test="${mvo eq null}">
+            <a href="/member/login" class="btn btn-block card-ivory text-uppercase">GO</a>
+            </c:if>
           </div>
         </div>
         <div class="card">
