@@ -36,7 +36,12 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>점포 재고 폐기 처분 <i class="fas fa-check"></i></li>
             </ul>
             <hr>
+            <c:if test="${mvo ne null}">
             <a href="/stockscrap/exscrap" class="btn btn-block btn-dark text-uppercase">GO</a>
+            </c:if>
+            <c:if test="${mvo eq null}">
+            <a href="/member/login" class="btn btn-block card-ivory text-uppercase">GO</a>
+            </c:if>
           </div>
         </div>
       </div>
