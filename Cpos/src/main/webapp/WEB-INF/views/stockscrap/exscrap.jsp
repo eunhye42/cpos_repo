@@ -156,6 +156,7 @@ $("#mcate").on("change", function() {
     var tags = document.getElementsByClassName("ex_date");
     let barcodes = $(".barcode");
     let datas = [];
+    if(barcodes.length == 0){alert("폐기할 상품이 없습니다.");}else{
     for (let i = 0; i <barcodes.length; i++) {
         let scData = {member_id:$(".mid").eq(i).val(),
         		barcode:$(".barcode").eq(i).val(),
@@ -188,8 +189,8 @@ $("#mcate").on("change", function() {
     		alert("에러메시지:관리자에게 문의하세요~");
     		console.log(e);
     	}
-if()
 		});
+    }
   });
   
   function exScrap(date) {
