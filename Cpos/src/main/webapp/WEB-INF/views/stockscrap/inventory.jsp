@@ -468,7 +468,7 @@ $("#mcate").on("change", function() {
 		/*console.log("상세:"+$("#mid").val()+"/"+$("#dt_barcode").text()+"/"
 				+$("#dt_pname").text()+"/"+$("#dt_ctgr").val()+"/"+$("#dt_gPrice").text()
 				+"/"+$("#dt_exdate").text()+"/"+$("#dt_qnt").val()+"/"+ino+"/"+div+"/"+content);*/
-		if(div != null){
+		if(div != null && content.trim() != ""){
 		$.ajax({
 			url:"/stockscrap/scrap",
 			type:"post",
@@ -490,8 +490,10 @@ $("#mcate").on("change", function() {
 			alert("에러발생. 관리자에게 문의하세요.");
 			console.log(r)
 		});
-		}else{
+		}else if(div == null){
 			alert("분류를 선택해주세요!!");
+		}else{
+			alert("내용을 입력해주세요!!");
 		}
 	});
 </script>
