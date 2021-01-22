@@ -152,6 +152,7 @@ $("#mcate").on("change", function() {
     exlistUp(large, medium, 1);
   });
   
+  //페이지 전체 폐기
   $("#allscrap").on("click", function() {
     var tags = document.getElementsByClassName("ex_date");
     let barcodes = $(".barcode");
@@ -188,6 +189,7 @@ $("#mcate").on("change", function() {
     	error: function(e) {
     		alert("에러메시지:관리자에게 문의하세요~");
     		console.log(e);
+		//에러
     	}
 		});
     }
