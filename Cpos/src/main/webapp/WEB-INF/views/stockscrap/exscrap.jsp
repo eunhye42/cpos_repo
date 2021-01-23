@@ -156,8 +156,9 @@ $("#mcate").on("change", function() {
   $("#allscrap").on("click", function() {
     var tags = document.getElementsByClassName("ex_date");
     let barcodes = $(".barcode");
-    let datas = [];
+
     if(barcodes.length == 0){alert("폐기할 상품이 없습니다.");}else{
+    let datas = [];
     for (let i = 0; i <barcodes.length; i++) {
         let scData = {member_id:$(".mid").eq(i).val(),
         		barcode:$(".barcode").eq(i).val(),
@@ -174,7 +175,7 @@ $("#mcate").on("change", function() {
     jQuery.ajaxSettings.traditional = true;
     $.ajax({
     	url:"/stockscrap/allScrap",
-    	type:"POST",
+    	type:"post",
     	dataType:"json",
     	data:JSON.stringify(datas),
     	contentType: "application/json; charset=utf-8",
