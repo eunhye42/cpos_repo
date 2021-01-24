@@ -173,6 +173,8 @@ $("#mcate").on("change", function() {
         datas.push(scData);
     }
     //console.log(scData);
+    console.log(datas);
+    //console.log(datas[0]);
     jQuery.ajaxSettings.traditional = true;
     $.ajax({
     	url:"/stockscrap/allScrap",
