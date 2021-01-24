@@ -172,6 +172,7 @@ $("#mcate").on("change", function() {
         		scrap_content:"전체폐기"};
         datas.push(scData);
     }
+    //console.log(scData);
     jQuery.ajaxSettings.traditional = true;
     $.ajax({
     	url:"/stockscrap/allScrap",
