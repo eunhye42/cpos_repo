@@ -1,0 +1,24 @@
+Mapper 파일의 저장 경로
+
+-> src/main/resources/mappers폴더 생성
+
+( Java로 작성된 클래스와 경로를 분리하는 것이 유지보수에 좋음 )
+
+
+
+>> myBatis-Spring에서 XML Mapper 인식
+
+( MyBatis가 동작하면 XML Mapper를 인식해야 한다. )
+
+root-context.xml 설정 변경
+
+<bean>
+<property></property>
+</bean>
+
+
+=======================================
+
+Spring Web 프로젝트에서 정적 리소스(js, css, image ...) 를 사용하기 위해서는 보통
+
+->  /src/main/webapp/resources 위치에 생성 
