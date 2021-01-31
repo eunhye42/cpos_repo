@@ -51,7 +51,7 @@
   </td>
       <td colspan="2"><a id="scrapListBtn" class="btn btn-secondary" href="/stockscrap/exscrap">폐기리스트</a>
       </td></tr>
-      <tr><td>정산액: <input type="text" value="${}" id="calc"></td></tr>
+      <tr><td><button="button" id="cashBtn">정산</button></td></tr>
     </tfoot>
     </table>
     
